@@ -1,0 +1,15 @@
+{% extends "lava_light/index.html" %}
+{% load static i18n crispy_forms_tags %}
+
+{% block page_header_actions %}
+    {% if view == "update" %}
+    <a class="btn btn-default" href="{{ object.get_absolute_url }}">{% trans 'Annuler' %}</a>
+    {% elif view == "create" %}
+    <a class="btn btn-default" href="{{ list_url }}">{% trans 'Annuler' %}</a>
+    {% endif %}
+{% endblock page_header_actions %}
+
+{% block main %}
+    <!-- <form method="post" enctype="multipart/form-data"> -->
+    {% crispy form %}
+{% endblock %}

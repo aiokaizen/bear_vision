@@ -1,0 +1,10 @@
+.page-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.page-header-wrapper .page-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}

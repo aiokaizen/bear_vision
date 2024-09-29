@@ -1,0 +1,103 @@
+{% load lava_light_tags static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {{ p.title|default:'Lava Light home page' }}
+    </title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href={% static 'enlink/assets/images/logo/favicon.png' %}>
+
+    <!-- page css -->
+    {% block page_css %}
+    {% endblock page_css %}
+
+    <!-- Core css -->
+    <link href={% static 'enlink/assets/css/app.min.css' %} rel="stylesheet">
+
+    <!-- Custom css -->
+    <link href={% static 'enlink/assets/css/custom.css' %} rel="stylesheet">
+
+    <!-- Extra /Page styles -->
+    {% block extra_css %}
+    {% endblock extra_css %}
+
+</head>
+
+<body>
+    <div class="app">
+        {% block app %}
+
+        {% endblock app %}
+    </div>
+
+
+    <!-- Core Vendors JS -->
+    <script src={% static 'enlink/assets/js/vendors.min.js' %}></script>
+
+    <!-- Page js -->
+    {% block page_js %}
+    {% endblock page_js %}
+
+    <!-- Core JS -->
+    <script src={% static 'enlink/assets/js/app.min.js' %}></script>
+
+    <!-- Messages toast -->
+    <div class="notification-toast top-right" id="notification-toast"></div>
+    <script>
+        function showToast(tag="primary", message) {
+            let title = "{% trans 'Info' %}";
+            let class_name = tag;
+
+            if (tag == "success") {
+                title =  "{% trans 'Succès' %}";
+            }
+            else if (tag == "danger") {
+                title =  "{% trans 'Erreur' %}";
+            }
+            else if (tag == "warning") {
+                title =  "{% trans 'Avertissement' %}";
+            }
+
+            var toastHTML = `<div class="toast fade hide" data-delay="5000">
+                <div class="toast-header">
+                    <i class="anticon anticon-info-circle text-${class_name} m-r-5"></i>
+                    <strong class="mr-auto">${title}</strong>
+                    <small>{% trans 'Aujourd\'hui' %}</small>
+                    <button type="button" class="ml-2 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    ${message}
+                </div>
+            </div>`;
+
+            $('#notification-toast').append(toastHTML);
+            $('#notification-toast .toast').toast('show');
+            setTimeout(function(){
+                $('#notification-toast .toast:first-child').remove();
+            }, 5000);
+        }
+
+        {% for message in messages %}
+            alert("{{ message|safe|capfirst }}");
+            showToast(
+                {% if message.tags %}"{{ message.tags }}"{% endif %},
+                "{{ message|capfirst }}"
+            )
+        {% endfor %}
+    </script>
+
+    <!-- Extra js -->
+    {% block extra_js %}
+    {% endblock extra_js %}
+
+</body>
+
+</html>

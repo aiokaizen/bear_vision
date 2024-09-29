@@ -1,0 +1,33 @@
+<html>
+<head>
+
+    <style>
+        .page-wrapper {
+            display: flex;
+            align-items: start;
+            justify-content: start;
+        }
+        .main-side-bar {
+            width: 30%
+        }
+        .main-content {
+            width: 70%
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="main-side-bar">
+            <ul>
+            {% for menu_item in main_menu %}
+                <li><a href="{{ menu_item.url }}">{{ menu_item.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        <div class="main-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>

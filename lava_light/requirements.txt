@@ -1,0 +1,13 @@
+Django==4.2
+django-admin-interface==0.26.1
+django-colorfield==0.10.1
+python-slugify==8.0.1
+django-ckeditor==6.7.0
+django-image-cropping==1.7
+Pillow==10.1.0
+django-autoslug==1.9.9
+requests==2.31.0
+django-ipware==5.0.2
+django-crispy==1.8.1
+crispy-bootstrap4==2023.1
+easy_thumbnails==2.10

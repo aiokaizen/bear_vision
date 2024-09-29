@@ -1,0 +1,63 @@
+{% extends "lava_light/index.html" %}
+{% load static lava_light_tags crispy_forms_tags i18n %}
+
+{% block page_header_actions %}
+    <a class="btn btn-primary" href="{{ object.get_update_url }}">{% trans 'Modifier' %}</a>
+    <div class="dropdown dropdown-animated scale-left">
+        <button class="btn btn-default dropdown-toggle btn-rounded" data-toggle="dropdown">
+            <i class="anticon anticon-ellipsis"></i>
+        </button>
+        <div class="dropdown-menu">
+            <button class="dropdown-item" type="button" data-toggle="modal"
+                data-target="#ObjectDeleteModal"
+            >
+                <i class="anticon anticon-delete"></i> {% trans 'Supprimer' %}
+            </button>
+        </div>
+    </div>
+
+{% endblock page_header_actions %}
+
+{% block main %}
+
+<div class="table-responsive">
+    <table class="table">
+        {% for field in model_fields %}
+        <tr>
+            <th scope="col">{{ field.verbose_name }}</th>
+            <td>{{ object|get_field_value:field }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Modal -->
+    <div class="modal fade" id="ObjectDeleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ObjectDeleteModalTitle">
+                        {% trans "Voulez-vous vraiment effectuer la suppression ?" %}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="anticon anticon-close"></i>
+                    </button>
+                </div>
+                <!-- <div class="modal-body">
+                    ...
+                </div> -->
+                <div class="modal-footer">
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Non' %}</button>
+                        <input type="hidden" name="action" value="delete">
+                        <button type="submit" class="btn btn-danger">{% trans 'Oui' %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock extra_js %}

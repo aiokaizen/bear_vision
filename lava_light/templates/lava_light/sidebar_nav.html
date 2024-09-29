@@ -1,0 +1,17 @@
+
+<div class="side-nav">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu scrollable">
+            {% for menu_item in main_menu %}
+                <li class="nav-item dropdown">
+                    <a href="{{ menu_item.url }}">
+                        <span class="icon-holder">
+                            <i class="{{ menu_item.icon }}"></i>
+                        </span>
+                        <span class="title">{{ menu_item.title }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

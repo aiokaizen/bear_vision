@@ -1,0 +1,79 @@
+@font-face {
+    font-family: "Cairo Light";
+    src: url("../fonts/cairo/Cairo-Light.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Cairo Normal";
+    src: url("../fonts/cairo/Cairo-Regular.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Cairo Bold";
+    src: url("../fonts/cairo/Cairo-Bold.ttf");
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Cairo Black";
+    src: url("../fonts/cairo/Cairo-Black.ttf");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "Lexend Normal";
+    src: url("../fonts/lexend/Lexend-Regular.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Lexend Bold";
+    src: url("../fonts/lexend/Lexend-Bold.ttf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Noto Arabic Normal";
+    src: url("../fonts/noto_arabic/NotoNaskhArabic-Regular.ttf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Noto Arabic Bold";
+    src: url("../fonts/noto_arabic/NotoNaskhArabic-Bold.ttf");
+    font-weight: 700;
+}
+
+body {
+    font-family: "Lexend Normal";
+    color: #11123a;
+    /* --accent-color: #1cab98; */
+}
+
+table,
+tr,
+td,
+th {
+    border-spacing: 0;
+}
+
+h1, h2, h3 {
+    font-family: "Cairo Black";
+    text-transform: uppercase;
+    /* color: var(--accent-color); */
+}
+
+h4, h5, h6 {
+    font-family: "Lexend Bold";
+}
+
+.thin-text {
+    font-family: "Cairo Light";
+    font-weight: 300;
+}
+
+.ar {
+    font-family: "Noto Arabic Normal";
+    direction: rtl;
+}
+
+.content-table td, .content-table th {
+    padding: 5px 5px;
+}

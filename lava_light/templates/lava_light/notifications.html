@@ -1,0 +1,40 @@
+{% extends 'lava_light/index.html' %}
+{% load static lava_light_tags %}
+
+{% block page_css %}
+    <link href="{% static 'enlink/assets/vendors/datatables/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+{% endblock page_css %}
+
+{% block page_header_actions %}
+    <a class="btn btn-primary" href="{{ create_url }}">Create {{ model_verbose_name }}</a>
+{% endblock page_header_actions %}
+
+{% block main %}
+    <div class="card">
+        <div class="card-body">
+            <table id="data-table" class="table">
+                <thead>
+                    <tr>
+                        <th>Notifications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">Alert form Admin</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock main %}
+
+{% block page_js %}
+    <script src="{% static 'enlink/assets/vendors/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'enlink/assets/vendors/datatables/dataTables.bootstrap.min.js' %}"></script>
+{% endblock page_js %}
+
+{% block extra_js %}
+    <script>
+        $('#data-table').DataTable();
+    </script>
+{% endblock extra_js %}

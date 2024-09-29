@@ -1,21 +1,25 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from lava_light.models import BaseModel
+
 from trading_insights.settings import (
     POSITION_TYPE_CHOICES,
     SYMBOL_TYPE_CHOICES
 )
 
 
-class Symbol(models.Model):
+class Symbol(BaseModel):
+
+    menu_icon_class = "anticon anticon-dollar"
 
     class Meta:
         verbose_name = _("Symbol")
         verbose_name_plural = _("Symbols")
 
-    name = models.CharField(_("Symbol"), null=False, blank=False)
-    display_name = models.CharField(_("Extended name"), default="", blank=True)
-    symbol_type = models.CharField(_("Type"), choices=SYMBOL_TYPE_CHOICES, default="forex", blank=False)
+    name = models.CharField(_("Symbol"), max_length=256, null=False, blank=False)
+    display_name = models.CharField(_("Extended name"), max_length=256, default="", blank=True)
+    symbol_type = models.CharField(_("Type"), max_length=32, choices=SYMBOL_TYPE_CHOICES, default="forex", blank=False)
     pip_value = models.DecimalField(
         _("Pip value"), default=0.0001,max_digits=6, decimal_places=4, blank=True
     )
@@ -26,15 +30,17 @@ class Symbol(models.Model):
         return self.name
 
 
-class Account(models.Model):
+class Account(BaseModel):
+
+    menu_icon_class = "anticon anticon-user"
 
     class Meta:
         verbose_name = _("Account")
         verbose_name_plural = _("Accounts")
 
-    name = models.CharField(_("Account Name"), null=False, blank=False)
-    broker = models.CharField(_("Broker"), default="", blank=True)
-    account_id = models.CharField(_("Account ID"), default="", blank=True)
+    name = models.CharField(_("Account Name"), max_length=256, null=False, blank=False)
+    broker = models.CharField(_("Broker"), max_length=256, default="", blank=True)
+    account_id = models.CharField(_("Account ID"), max_length=256, default="", blank=True)
     starting_balance = models.DecimalField(
         _("Starting Balance"), default=0, max_digits=13, decimal_places=2, blank=True
     )
@@ -43,7 +49,9 @@ class Account(models.Model):
         return self.name
 
 
-class Position(models.Model):
+class Position(BaseModel):
+
+    menu_icon_class = "anticon anticon-dollar"
 
     class Meta:
         verbose_name = _("Position")
@@ -51,9 +59,9 @@ class Position(models.Model):
 
     account = models.ForeignKey(Account, null=False, blank=False, on_delete=models.PROTECT)
     symbol = models.ForeignKey(Symbol, null=False, blank=False, on_delete=models.PROTECT)
-    position_id = models.CharField(_("Position ID"), default="", blank=True)
+    position_id = models.CharField(_("Position ID"), max_length=256, default="", blank=True)
     position_type = models.CharField(
-        _("Type"), choices=POSITION_TYPE_CHOICES, null=False, blank=False
+        _("Type"), choices=POSITION_TYPE_CHOICES, max_length=16, null=False, blank=False
     )
 
     open_time = models.DateTimeField(_("Open Time"), null=False, blank=False)

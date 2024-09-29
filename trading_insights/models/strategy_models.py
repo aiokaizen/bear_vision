@@ -1,25 +1,29 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from lava_light.models import BaseModel
+
 from trading_insights.models.raw_data_models import (
     Account
  )
 
 
-class Scenario(models.Model):
+class Scenario(BaseModel):
+
+    menu_icon_class = "anticon anticon-file"
 
     class Meta:
         verbose_name = _("Scenario")
         verbose_name_plural = _("Scenarios")
 
-    name = models.CharField(_("Name"), null=False, blank=False)
+    name = models.CharField(_("Name"), max_length=256, null=False, blank=False)
     account = models.ForeignKey(Account, null=True, blank=True, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
 
 
-class ScenarioLine(models.Model):
+class ScenarioLine(BaseModel):
 
     class Meta:
         verbose_name = _("Scenario Line")
