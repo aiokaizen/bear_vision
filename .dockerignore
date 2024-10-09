@@ -1,0 +1,8 @@
+venv/
+static/
+*.pyc
+db.sqlite3
+setenv.sh
+.git
+.gitignore
+.dockerignore

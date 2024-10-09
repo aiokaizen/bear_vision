@@ -1,0 +1,24 @@
+FROM python:3.10
+
+RUN pip install --upgrade pip
+
+WORKDIR /bear_vision
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY . .
+
+# Define environment variable for the container.
+ENV PORT=8000
+EXPOSE 8000
+
+# Wait for a TCP host/port to be available
+# COPY wait-for-it.sh /usr/local/bin/wait-for-it
+# RUN chmod +x /usr/local/bin/wait-for-it
+
+# Run using an entrypoint file
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+CMD ["bash", "./entrypoint.sh"]
